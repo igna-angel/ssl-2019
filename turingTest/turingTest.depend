@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1571687003 source:c:\users\christian\desktop\utn\sintaxis\turingtest\main.c
+	<stdio.h>
+	<ctype.h>
+	<string.h>
+	<stdlib.h>
+

@@ -1,5 +1,4 @@
 
-/* Programa que utiliza una Maquina de Turing*/
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
@@ -10,23 +9,28 @@
 #define RECHAZADA 0
 #define D 1
 #define I 2
+
+/*PROTOTIPOS DE FUNCIONES*/
 int columna(int c);
 int verifica(char *s);
 int mturing(char *cadena);
-/**************************************************************/
-/* Elemento de la Matriz de transiciones de la maq. de Turing */
+
+
 typedef struct{
     int marca;
     int moverA;
     int estadoSiguiente;
     }elementoMatriz;
-/*******************************************************************/
-/* Funcion Principal que lee una cadena de la linea de comandos    y decide si pertenece al lenguaje, utilizando la maq. de Turing */
+
+
+
+/* Implementacion MT para  L= a^n b^n c^n/n=>1 */
+
 int main(int argc, char *argv[])
 {
      if ( argc == 1 )
     {
-    printf("Debe ingresar una Cadena en Linea de Comandos\n");
+    printf("Ingrese una Cadena en Linea de Comandos\n");
     return EXIT_FAILURE;
     }
     if ( argc != 2 )
@@ -36,16 +40,15 @@ int main(int argc, char *argv[])
         }
         if ( !verifica(argv[1]) )
         {
-            printf("Los Caracteres de la Cadena No pertenecen al Alfabeto\n");
+            printf("La Cadena NO pertenecen al Alfabeto\n");
             return EXIT_FAILURE;
         }
         if ( mturing(argv[1]) )
             printf("La Cadena ingresada pertenece al Lenguaje\n");
-        else printf("La Cadena ingresada No pertenece al Lenguaje\n");
+        else printf("La Cadena ingresada NO pertenece al Lenguaje\n");
             return 0;
     }
-/********************************************/
-/* Funcion que implementa la maq. de Turing */
+
 int mturing(char *cadena)
 {
     static elementoMatriz tabla[NUMESTADOS][NUMCOLS] = {
@@ -120,8 +123,8 @@ int mturing(char *cadena)
             return ACEPTADA;
         else return RECHAZADA;
 }
-/***********************************************************************/
-/* Funcion que retorna la columna de la matriz que corresponde al caracter leido */
+
+
 int columna(int c)
 {
     switch ( c )
@@ -134,8 +137,9 @@ int columna(int c)
         case 'Z' : return 5;
         case '\0' : return 6;
     }
-}/***********************************************************************/
-/* Funcion que verifica si los caracteres de la cadena pertenecen al alfabeto */
+}
+
+
 int verifica(char *s)
 {
     size_t n = strlen(s);
